@@ -1,12 +1,21 @@
 package notDefault;
 import java.util.Scanner;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.color.*;
+import java.awt.font.*;
+import java.awt.image.*;
 
 public class ConveyMain {
 
 	public static void main(String[] args) {
 		
-		// init
+		init();
 		
+		
+	}
+	
+	public static void init() {
 		Scanner scan = new Scanner(System.in);
 		int x, y;
 		System.out.print("X (10-100) = ");
@@ -22,8 +31,6 @@ public class ConveyMain {
 		
 		byte[][] board = new byte[x+2][y+2];
 		
-		// fill board with 0
-		
 		board = clear(board, x, y);
 	}
 	
@@ -34,13 +41,13 @@ public class ConveyMain {
 		for (int i=1;i<=x;i++) {
 			for (int j=1;j<=y;j++) {
 				int val = check(board, i, j);
-				if(board[i][j]==0) {
-					if(val>=3) {
+				if(board[i][j]==0 || board[i][j]==2) {
+					if(val==3) {
 						board[i][j] = 1;
 					}
 				} else if(board[i][j]==1) {
 					if(val<2 || val>3) {
-						board[i][j]=0;
+						board[i][j]=2;
 					}
 				}
 			}
@@ -52,7 +59,14 @@ public class ConveyMain {
 	
 	public static byte check(byte[][] board, int x, int y) {
 		byte val=0;
-		val = (byte) (board[x-1][y-1] + board[x][y-1] + board[x+1][y-1] + board[x-1][y] + board[x+1][y] + board[x-1][y+1] + board[x][y+1] + board[x+1][y+1]);
+		if(board[x-1][y-1]==1)	val += 1;
+		if(board[x-1][y]==1)	val += 1;
+		if(board[x-1][y+1]==1)	val += 1;
+		if(board[x][y-1]==1)	val += 1;
+		if(board[x][y+1]==1)	val += 1;
+		if(board[x+1][y-1]==1)	val += 1;
+		if(board[x+1][y]==1)	val += 1;
+		if(board[x+1][y+1]==1)	val += 1;
 		return val;
 	}
 	
@@ -61,6 +75,8 @@ public class ConveyMain {
 	public static void render(byte[][] feld, int x, int y) {
 		
 	}
+	
+	// clear board
 	
 	public static byte[][] clear(byte[][] board, int x, int y){
 		for (int i=0; i<x+1;i++) {
