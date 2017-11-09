@@ -23,8 +23,11 @@ public class graphical extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.RED);
-		g.fillRect(50, 50, 400, 400);
+		g.setColor(Color.BLACK);
+		g.drawLine(0, 0, 499, 0);
+		g.drawLine(0, 0, 0, 499);
+		g.drawLine(0, 499, 499, 499);
+		g.drawLine(499, 0, 499, 499);
 	}
 	
 }
