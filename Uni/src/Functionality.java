@@ -9,15 +9,14 @@ public class Functionality {
 			for(int i=1;i<a.length;i++) {
 				sorted[i] = sorted[i-1].clone();
 				for(int j=0;j<i;j++) {
-					if(sorted[i][i]<sorted[i][j]) {
-						int swap = sorted[i][i];
-						sorted[i][i] = sorted[i][j];
-						sorted[i][j] = swap;
+					if(sorted[i][i-j]<sorted[i][i-(j+1)]) {
+						int swap = sorted[i][i-j];
+						sorted[i][i-j] = sorted[i][i-(j+1)];
+						sorted[i][i-(j+1)] = swap;
 					}
 				}
 			}
 			return sorted;
 		}
 	}
-	
 }
