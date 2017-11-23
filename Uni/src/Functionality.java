@@ -3,6 +3,9 @@ public class Functionality {
 	public static int[][] insertionSort(int[] a) {
 		if(a==null) {
 			return null;
+		} if(a.length==0){
+			int[][] result = new int[0][0];
+			return result;
 		}else {
 			int[][] sorted = new int[a.length][a.length];
 			sorted[0]=a.clone();
